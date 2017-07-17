@@ -5,6 +5,7 @@ From: https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-securit
 
 - Also added admin/home
 - Added nekohtml on Gradle
+- @Transient was remove from field 'password' in order to make it work
 
 ## SQL Scripts modified to be used inside a DB
 
