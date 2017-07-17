@@ -42,11 +42,11 @@
         </thead>
         <tbody>
             <tr th:each="user, status : ${userList}">
-                <td th:text="${status.count}">1</td>
-                <td th:text="${user.name}">Hero name</td>
-                <td th:text="${user.lastName}">Real name</td>
-                <td th:text="${user.email}">Hero mail</td>
-                <td th:text="${user.active}">Hero State</td>
+                <td th:text="${status.count}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.active}"></td>
                 <!--<td>
                     <span class="glyphicon glyphicon-ok" th:if="${user.good}"></span>
                     <span class="glyphicon glyphicon-remove" th:unless="${hero.good}"></span>
