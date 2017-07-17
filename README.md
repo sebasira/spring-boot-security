@@ -39,3 +39,14 @@ CREATE TABLE `springboot_security`.`user_role` (
   CONSTRAINT FK_ROLE FOREIGN KEY (`role_id`) REFERENCES `springboot_security`.`role` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
+
+## Define Roles and Access differente pages
+
+Based on: http://www.baeldung.com/spring_redirect_after_login
+
+
+## List Users only for ADMINs
+
+Taken from:
+- https://g00glen00b.be/spring-webapp/
+- https://springframework.guru/displaying-list-of-objects-in-table-using-thymeleaf/
