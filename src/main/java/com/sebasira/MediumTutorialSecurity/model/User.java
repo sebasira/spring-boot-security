@@ -61,7 +61,9 @@ public class User {
     @Column(name = "password")
     @Length(min = 5, message = "*Your password must have at least 5 characters")
     @NotEmpty(message = "*Please provide your password")
-    @Transient
+    //@Transient
+    // Field ‘password’ doesn’t have a default value caused by using @transient in user.java.
+    // Just remove it and everything will be fine
     private String password;
     public String getPassword() {
         return password;
@@ -112,7 +114,7 @@ public class User {
     /* ROLES */
     /* ***** */
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_role", joinColumns ={@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
     public Set<Role> getRoles() {
         return roles;
