@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service("userService")
 public class UserServiceImplementation implements UserService{
@@ -20,6 +21,11 @@ public class UserServiceImplementation implements UserService{
     private RoleRepository roleRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
     @Override
     public User findUserByEmail(String email) {
