@@ -122,4 +122,15 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+
+    /* AS ADMIN */
+    /* ******** */
+    private boolean asAdmin;
+    public boolean isAsAdmin() {
+        return asAdmin;
+    }
+    public void setAsAdmin(boolean asAdmin) {
+        this.asAdmin = asAdmin;
+    }
 }
