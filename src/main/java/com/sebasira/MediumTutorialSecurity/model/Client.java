@@ -19,11 +19,11 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "client_id")
-    private int id;
-    public int getId() {
+    private long id;
+    public long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,5 +50,30 @@ public class Client {
     }
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+
+    /* STATE */
+    /* ***** */
+    @Column(name = "state")
+    private int state;
+    public int getState() {
+        return state;
+    }
+    public void setState(int state) {
+        this.state = state;
+    }
+
+
+    /* USER */
+    /* **** */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User userOwner;
+    public User getUser() {
+        return userOwner;
+    }
+    public void setUser(User user) {
+        this.userOwner = user;
     }
 }

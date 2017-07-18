@@ -3,10 +3,27 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Clients</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-switch.min.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/libs/bootstrap-switch.min.js}" /></script>
+
+    <script type='text/javascript' th:inline="javascript">
+    //<![CDATA[
+        $( document ).ready(function() {
+            $("[name='my-checkbox']").bootstrapSwitch();
+
+            $('input[name="alone-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+              console.log(this); // DOM element
+              console.log(event); // jQuery event
+              console.log(state); // true | false
+            });
+        });
+
+    //]]>
+    </script>
 </head>
 <body>
 <div class="container">
@@ -41,6 +58,33 @@
                 </div>
 
                 <span th:utext="${successMessage}"></span>
+
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="client : ${clientList}">
+                        <td th:text="${client.name}"></td>
+                        <td th:text="${client.lastName}"></td>
+                        <td>
+                            <a th:href="@{/delete_client/} + ${client.id}" class="btn btn-danger">Delete</a>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="my-checkbox" th:checked="${client.state} ? 'checked'">
+                        </td>
+
+                        <td>
+                            <a th:href="${client.state} ? @{/disable_client/}  + ${client.id} : @{/enable_client/} + ${client.id}" class="btn" th:classappend="${client.state} ? btn-danger : btn-success">Delete</a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
 
 
             </form>

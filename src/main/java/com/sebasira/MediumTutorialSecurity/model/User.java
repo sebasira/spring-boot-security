@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -137,7 +138,25 @@ public class User {
 
     /* CLIENTS */
     /* ******* */
-    @OneToMany(cascade = CascadeType.ALL)
+    /**
+     * El mapped by, me indica cual es el campo (atributo de clase) en este
+     * caso de la clase CLIENTE que se asocia al USUARIO. Si vamos a esa
+     * clase, el campo se llama userOwner (el objeto JAVA, no tiene nada
+     * que ver con la tabla)
+     *
+     * Source: https://www.youtube.com/watch?v=4p-cwPQ-b4Y
+     */
+    @OneToMany (cascade = CascadeType.ALL, mappedBy ="userOwner")
+    private List<Client> clients;
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
+    /*@OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_client", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "client_id") })
     private Set<Client> clients;
     public Set<Client> getClients() {
@@ -147,5 +166,6 @@ public class User {
     public void setClients(Set<Client> userClients) {
         this.clients = userClients;
     }
+    */
 
 }
