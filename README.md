@@ -76,3 +76,4 @@ CREATE TABLE `springboot_security`.`user_client` (
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 - OneToMany relationship according to https://www.youtube.com/watch?v=j6D-9XC-mDQ
+- Delete a Client https://stackoverflow.com/questions/43606063/spring-thymeleaf-delete-object-from-html-table-and-pass-id-to-controller
