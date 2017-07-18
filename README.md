@@ -64,6 +64,6 @@ CREATE TABLE `springboot_security`.`user_clients` (
   `name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   PRIMARY KEY (`client_id`),
-  CONSTRAINT FK_USER FOREIGN KEY (`user_id`) REFERENCES `springboot_security`.`user` (`user_id`)
+  CONSTRAINT FK_USER_CLIENT FOREIGN KEY (`user_id`) REFERENCES `springboot_security`.`user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
