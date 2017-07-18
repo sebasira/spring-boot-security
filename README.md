@@ -85,3 +85,5 @@ CREATE TABLE `springboot_security`.`user_client` (
 ```sql
 ALTER TABLE springboot_security.client ADD COLUMN state INT DEFAULT 0;
 ```
+- Using Bootstrap-switch http://bootstrapswitch.com
+- Check state depends on flag: https://stackoverflow.com/questions/29826576/thymeleaf-how-to-add-checked-attribute-to-input-conditionally
