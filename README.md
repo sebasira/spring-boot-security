@@ -54,16 +54,23 @@ Taken from:
 
 ## Define a List of Clients for each User
 
-- Add Clients Database according to this SQL Script
+- Add clients Table and user_clients Table according to this SQL Script
 
 ```sql
--- Table structure for table `user_clients`
-CREATE TABLE `springboot_security`.`user_clients` (
+-- Table structure for table `client`
+CREATE TABLE `springboot_security`.`client` (
   `client_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`client_id`),
-  CONSTRAINT FK_USER_CLIENT FOREIGN KEY (`user_id`) REFERENCES `springboot_security`.`user` (`user_id`)
+  PRIMARY KEY (`client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Table structure for table `user_client`
+CREATE TABLE `springboot_security`.`user_role` (
+  `user_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`client_id`),
+  CONSTRAINT FK_USER_CLIENT FOREIGN KEY (`user_id`) REFERENCES `springboot_security`.`user` (`user_id`),
+  CONSTRAINT FK_CLIENT FOREIGN KEY (`client_id`) REFERENCES `springboot_security`.`client` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
