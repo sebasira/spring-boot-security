@@ -66,7 +66,7 @@ CREATE TABLE `springboot_security`.`client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Table structure for table `user_client`
-CREATE TABLE `springboot_security`.`user_role` (
+CREATE TABLE `springboot_security`.`user_client` (
   `user_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`client_id`),
