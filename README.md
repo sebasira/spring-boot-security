@@ -77,3 +77,11 @@ CREATE TABLE `springboot_security`.`user_client` (
 ```
 - OneToMany relationship according to https://www.youtube.com/watch?v=j6D-9XC-mDQ
 - Delete a Client https://stackoverflow.com/questions/43606063/spring-thymeleaf-delete-object-from-html-table-and-pass-id-to-controller
+
+
+## Updating Client
+
+- Alter MySQL table according to:
+```sql
+ALTER TABLE springboot_security.client ADD COLUMN state INT DEFAULT 0;
+```
