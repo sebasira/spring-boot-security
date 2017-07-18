@@ -62,19 +62,6 @@ CREATE TABLE `springboot_security`.`client` (
    `client_id` int(11) NOT NULL AUTO_INCREMENT,
    `name` varchar(255) NOT NULL,
    `last_name` varchar(255) NOT NULL,
-   `user_id` int(11) NOT NULL,
-   PRIMARY KEY (`client_id`),
-   CONSTRAINT FK_USER_CLIENT FOREIGN KEY (`user_id`) REFERENCES `springboot_security`.`user` (`user_id`),
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-  
-  
-  
-  
--- Table structure for table `client`
-CREATE TABLE `springboot_security`.`client` (
-   `client_id` int(11) NOT NULL AUTO_INCREMENT,
-   `name` varchar(255) NOT NULL,
-   `last_name` varchar(255) NOT NULL,
    PRIMARY KEY (`client_id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -88,3 +75,4 @@ CREATE TABLE `springboot_security`.`user_client` (
    CONSTRAINT FK_CLIENT FOREIGN KEY (`client_id`) REFERENCES `springboot_security`.`client` (`client_id`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
+- OneToMany relationship according to https://www.youtube.com/watch?v=j6D-9XC-mDQ
