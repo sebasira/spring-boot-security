@@ -50,3 +50,20 @@ Based on: http://www.baeldung.com/spring_redirect_after_login
 Taken from:
 - https://g00glen00b.be/spring-webapp/
 - https://springframework.guru/displaying-list-of-objects-in-table-using-thymeleaf/
+
+
+## Define a List of Clients for each User
+
+- Add Clients Database according to this SQL Script
+
+```sql
+-- Table structure for table `user_clients`
+CREATE TABLE `springboot_security`.`user_clients` (
+  `client_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`client_id`),
+  CONSTRAINT FK_USER FOREIGN KEY (`user_id`) REFERENCES `springboot_security`.`user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
