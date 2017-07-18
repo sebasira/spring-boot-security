@@ -133,4 +133,19 @@ public class User {
     public void setAsAdmin(boolean asAdmin) {
         this.asAdmin = asAdmin;
     }
+
+
+    /* CLIENTS */
+    /* ******* */
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_client", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "client_id") })
+    private Set<Client> clients;
+    public Set<Client> getClients() {
+        return this.clients;
+    }
+
+    public void setClients(Set<Client> userClients) {
+        this.clients = userClients;
+    }
+
 }

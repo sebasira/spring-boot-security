@@ -1,5 +1,6 @@
 package com.sebasira.MediumTutorialSecurity.service;
 
+import com.sebasira.MediumTutorialSecurity.model.Client;
 import com.sebasira.MediumTutorialSecurity.model.User;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface UserService {
     public List<User> getAllUsers();
     public User findUserByEmail(String email);
     public void saveUser(User user);
+
+    public List<Client> getClients(User user);
 }

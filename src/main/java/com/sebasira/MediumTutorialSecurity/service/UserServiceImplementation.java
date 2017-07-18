@@ -1,6 +1,7 @@
 package com.sebasira.MediumTutorialSecurity.service;
 
 
+import com.sebasira.MediumTutorialSecurity.model.Client;
 import com.sebasira.MediumTutorialSecurity.model.Role;
 import com.sebasira.MediumTutorialSecurity.model.User;
 import com.sebasira.MediumTutorialSecurity.repository.RoleRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -46,5 +48,11 @@ public class UserServiceImplementation implements UserService{
         }
         
         userRepository.save(user);
+    }
+
+
+    @Override
+    public List<Client> getClients(User user) {
+        return (new ArrayList<Client>(user.getClients()));
     }
 }
