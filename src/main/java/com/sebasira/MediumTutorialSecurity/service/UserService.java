@@ -1,6 +1,7 @@
 package com.sebasira.MediumTutorialSecurity.service;
 
 import com.sebasira.MediumTutorialSecurity.model.Client;
+import com.sebasira.MediumTutorialSecurity.model.Role;
 import com.sebasira.MediumTutorialSecurity.model.User;
 
 import java.util.List;

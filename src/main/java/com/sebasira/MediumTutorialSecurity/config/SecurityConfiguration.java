@@ -47,20 +47,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Value("${spring.queries.roles-query}")
     private String rolesQuery;
 
+    @Autowired
+    private CustomAuthenticationProvider customAuthenticationProvider;
+
 
     /**
      * AuthenticationManagerBuilder provides a mechanism to get a user based on the
      * password encoder, data source, user query and role query.
      */
+    @Autowired
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.
+        auth
+                .authenticationProvider(customAuthenticationProvider);
+        /*auth.
                 jdbcAuthentication()
                 .usersByUsernameQuery(usersQuery)
                 .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
-                .passwordEncoder(bCryptPasswordEncoder);
+                .passwordEncoder(bCryptPasswordEncoder);*/
     }
 
 
@@ -76,16 +82,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
-                .loginPage("/login").failureUrl("/login?error=true")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/user/**").hasAuthority("USER")
+                .anyRequest()
+                .authenticated()
+            .and()
+                .csrf().disable()
+            .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error=true")
                 //.defaultSuccessUrl("/admin/home")
                 .successHandler(new CustomUrlAuthenticationSuccessHandler())
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .and().logout()
+            .and()
+                .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
+                .logoutSuccessUrl("/")
+            .and()
+                .exceptionHandling()
                 .accessDeniedPage("/access-denied");
     }
 

@@ -114,7 +114,11 @@ public class User {
 
     /* ROLES */
     /* ***** */
-    @ManyToMany(cascade = CascadeType.ALL)
+    /*
+    Tuve que cambiar el FETCH a EAGER porque sino el CustomAuthotizationProvider fallaba
+    al obtener los roles del usuario, por lazyness
+     */
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns ={@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
     public Set<Role> getRoles() {
