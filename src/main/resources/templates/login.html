@@ -31,6 +31,12 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
     </form>
+
+    <p th:if="${param.error != null and session['SPRING_SECURITY_LAST_EXCEPTION'] != null}"
+       th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+        Wrong username or password
+    </p>
+
 </div>
 </body>
 </html>

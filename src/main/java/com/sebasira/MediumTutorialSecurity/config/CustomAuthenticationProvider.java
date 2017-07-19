@@ -7,6 +7,7 @@ import com.sebasira.MediumTutorialSecurity.service.UserService;
 import com.sebasira.MediumTutorialSecurity.service.UserServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -53,8 +54,22 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         Source: https://stackoverflow.com/a/34210582/2597775
          */
 
+        // Invalid User or NotFound
+        if (attempUser == null || !username.equals(attempUser.getEmail())) {
+            throw new BadCredentialsException("Username not found.");
+        }
+
+        // Invalid Password
+        if (!bCryptPasswordEncoder.matches(rawPassword, attempUser.getPassword())) {
+            throw new BadCredentialsException("Wrong password.");
+        }
+
+
         if(username.equals(attempUser.getEmail())  && bCryptPasswordEncoder.matches(rawPassword, attempUser.getPassword())) {
-            List<GrantedAuthority> grantedAuths = new ArrayList<>();
+            // User NOT ACTIVE
+            if (attempUser.getActive() != 1){
+                throw new BadCredentialsException("Usuario Inactivo");
+            }
 
             /*
             Aca debo traer los roles de ese usuario y setearselos como grantedAuths,
@@ -65,6 +80,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
              */
             List<Role> userRoles = new ArrayList<Role>(attempUser.getRoles());
 
+            List<GrantedAuthority> grantedAuths = new ArrayList<>();
             for (int i=0; i<userRoles.size(); i++){
                 grantedAuths.add(new SimpleGrantedAuthority(userRoles.get(i).getRole()));
             }
