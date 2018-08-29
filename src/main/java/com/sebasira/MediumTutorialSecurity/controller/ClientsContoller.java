@@ -25,10 +25,15 @@ public class ClientsContoller {
 
     @Autowired
     private ClientService clientService;
-    @Autowired
+
     private UserService userService;
 
-    @RequestMapping(value="/clients", method = RequestMethod.GET)
+    @Autowired
+    public ClientsContoller(UserService userService) {
+        this.userService = userService;
+    }
+
+    @RequestMapping(value="/admin/clients", method = RequestMethod.GET)
     public ModelAndView clients(){
         ModelAndView modelAndView = new ModelAndView();
         Client client = new Client();

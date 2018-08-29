@@ -37,8 +37,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     // data source implemented out of the box by Spring Boot. We
     // only need to provide the database information in the application.properties file
-    @Autowired
-    private DataSource dataSource;
+//    @Autowired
+//    private DataSource dataSource;
 
     // Reference to user and role queries stored in application.properties file
     @Value("${spring.queries.users-query}")
